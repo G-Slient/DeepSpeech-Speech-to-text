@@ -659,7 +659,7 @@ def train():
                         copyfile(f"{save_path}.data-00000-of-00001", f"{static_drive_checkpoint_path}/best_dev.data-00000-of-00001")
                         copyfile(f"{save_path}.index", f"{static_drive_checkpoint_path}/best_dev.index")
                         copyfile(f"{save_path}.meta", f"{static_drive_checkpoint_path}/best_dev.meta")
-                        copyfile("best_dev_checkpoint", f"{static_drive_checkpoint_path}/best_dev_checkpoint")
+                        copyfile(f"{"/".join(save_path.split("/")[:  2])}/best_dev_checkpoint", f"{static_drive_checkpoint_path}/best_dev_checkpoint")
                         
                     # Early stopping
                     if FLAGS.early_stop and len(dev_losses) >= FLAGS.es_steps:
