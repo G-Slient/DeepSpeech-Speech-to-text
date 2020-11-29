@@ -4,6 +4,7 @@ from __future__ import absolute_import, division, print_function
 
 import os
 import sys
+from shutil import copyfile
 
 LOG_LEVEL_INDEX = sys.argv.index('--log_level') + 1 if '--log_level' in sys.argv else 0
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = sys.argv[LOG_LEVEL_INDEX] if 0 < LOG_LEVEL_INDEX < len(sys.argv) else '3'
@@ -27,6 +28,9 @@ from util.feeding import create_dataset, samples_to_mfccs, audiofile_to_features
 from util.flags import create_flags, FLAGS
 from util.logging import log_info, log_error, log_debug, log_progress, create_progressbar
 
+
+static_drive_checkpoint_path = "/content/drive/MyDrive/ATV_SUBS_data/finetuning_checkpoints/"
+static_drive_output_path = "/content/drive/MyDrive/ATV_SUBS_data/output_models/"
 
 # Graph Creation
 # ==============
@@ -650,7 +654,13 @@ def train():
                         best_dev_loss = dev_loss
                         save_path = best_dev_saver.save(session, best_dev_path, global_step=global_step, latest_filename='best_dev_checkpoint')
                         log_info("Saved new best validating model with loss %f to: %s" % (best_dev_loss, save_path))
-
+                        
+                        # Copying the best checkpoint to drive directory
+                        copyfile(f"{save_path}.data-00000-of-00001", static_drive_checkpoint_path)
+                        copyfile(f"{save_path}.index", static_drive_checkpoint_path)
+                        copyfile(f"{save_path}.meta", static_drive_checkpoint_path)
+                        copyfile("best_dev_checkpoint", static_drive_checkpoint_path)
+                        
                     # Early stopping
                     if FLAGS.early_stop and len(dev_losses) >= FLAGS.es_steps:
                         mean_loss = np.mean(dev_losses[-FLAGS.es_steps:-1])
