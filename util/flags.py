@@ -46,7 +46,7 @@ def create_flags():
     # Global Constants
     # ================
 
-    f.DEFINE_integer('epochs', 75, 'how many epochs (complete runs through the train files) to train for')
+    f.DEFINE_integer('epochs', 100, 'how many epochs (complete runs through the train files) to train for')
 
     f.DEFINE_float('dropout_rate', 0.05, 'dropout rate for feedforward layers')
     f.DEFINE_float('dropout_rate2', -1.0, 'dropout rate for layer 2 - defaults to dropout_rate')
@@ -76,8 +76,8 @@ def create_flags():
 
     f.DEFINE_integer('inter_op_parallelism_threads', 0, 'number of inter-op parallelism threads - see tf.ConfigProto for more details. USE OF THIS FLAG IS UNSUPPORTED')
     f.DEFINE_integer('intra_op_parallelism_threads', 0, 'number of intra-op parallelism threads - see tf.ConfigProto for more details. USE OF THIS FLAG IS UNSUPPORTED')
-    f.DEFINE_boolean('use_allow_growth', False, 'use Allow Growth flag which will allocate only required amount of GPU memory and prevent full allocation of available GPU memory')
-    f.DEFINE_boolean('use_cudnn_rnn', False, 'use CuDNN RNN backend for training on GPU. Note that checkpoints created with this flag can only be used with CuDNN RNN, i.e. fine tuning on a CPU device will not work')
+    f.DEFINE_boolean('use_allow_growth', True, 'use Allow Growth flag which will allocate only required amount of GPU memory and prevent full allocation of available GPU memory')
+    f.DEFINE_boolean('use_cudnn_rnn', True, 'use CuDNN RNN backend for training on GPU. Note that checkpoints created with this flag can only be used with CuDNN RNN, i.e. fine tuning on a CPU device will not work')
     f.DEFINE_string('cudnn_checkpoint', '', 'path to a checkpoint created using --use_cudnn_rnn. Specifying this flag allows one to convert a CuDNN RNN checkpoint to a checkpoint capable of running on a CPU graph.')
 
     f.DEFINE_boolean('automatic_mixed_precision', False, 'whether to allow automatic mixed precision training. USE OF THIS FLAG IS UNSUPPORTED. Checkpoints created with automatic mixed precision training will not be usable without mixed precision.')
