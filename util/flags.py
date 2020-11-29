@@ -66,9 +66,9 @@ def create_flags():
 
     # Batch sizes
 
-    f.DEFINE_integer('train_batch_size', 1, 'number of elements in a training batch')
-    f.DEFINE_integer('dev_batch_size', 1, 'number of elements in a validation batch')
-    f.DEFINE_integer('test_batch_size', 1, 'number of elements in a test batch')
+    f.DEFINE_integer('train_batch_size', 254, 'number of elements in a training batch')
+    f.DEFINE_integer('dev_batch_size', 128, 'number of elements in a validation batch')
+    f.DEFINE_integer('test_batch_size', 128, 'number of elements in a test batch')
 
     f.DEFINE_integer('export_batch_size', 1, 'number of elements per batch on the exported graph')
 
