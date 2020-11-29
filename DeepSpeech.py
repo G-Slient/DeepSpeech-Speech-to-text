@@ -656,9 +656,9 @@ def train():
                         log_info("Saved new best validating model with loss %f to: %s" % (best_dev_loss, save_path))
                         
                         # Copying the best checkpoint to drive directory
-                        copyfile(f"{save_path}.data-00000-of-00001", f"{static_drive_checkpoint_path}/{save_path}.data-00000-of-00001")
-                        copyfile(f"{save_path}.index", f"{static_drive_checkpoint_path}/{save_path}.index")
-                        copyfile(f"{save_path}.meta", f"{static_drive_checkpoint_path}/{save_path}.meta")
+                        copyfile(f"{save_path}.data-00000-of-00001", f"{static_drive_checkpoint_path}/best_dev.data-00000-of-00001")
+                        copyfile(f"{save_path}.index", f"{static_drive_checkpoint_path}/best_dev.index")
+                        copyfile(f"{save_path}.meta", f"{static_drive_checkpoint_path}/best_dev.meta")
                         copyfile("best_dev_checkpoint", f"{static_drive_checkpoint_path}/best_dev_checkpoint")
                         
                     # Early stopping
